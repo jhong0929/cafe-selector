@@ -8,7 +8,6 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 export default defineConfig(() => {
   return {
-    base: '/cafe-selector/',
     plugins: [react(), tailwindcss()],
     resolve: {
       alias: {
