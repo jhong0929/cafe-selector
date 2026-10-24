@@ -1,0 +1,78 @@
+Skip to content
+ 
+Search Gists
+Search...
+All gists
+Back to GitHub
+@iampaula26
+iampaula26/deploy.yml
+Created 7 months ago • Report abuse
+Code
+Revisions
+2
+Clone this repository at &lt;script src=&quot;https://gist.github.com/iampaula26/efffc8cd8f9a0153e43ba8d1f62f8239.js&quot;&gt;&lt;/script&gt;
+<script src="https://gist.github.com/iampaula26/efffc8cd8f9a0153e43ba8d1f62f8239.js"></script>
+Ep5 google ai studio
+deploy.yml
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: ["main"]
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build project
+        run: npm run build
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+    steps:
+      - name: Deploy to GitHub Pages
+        uses: actions/deploy-pages@v4
+@jhong0929
+Comment
+ 
+
+Leave a comment
+Footer
+© 2026 GitHub, Inc.
+Footer navigation
+Terms
+Privacy
+Security
+Status
+Community
+Docs
+Contact
+Manage cookies
+Do not share my personal information
+
+Sign in to access your highlights
+Login / Signup
